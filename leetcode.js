@@ -304,3 +304,88 @@ var lowestCommonAncestor = function(root, p, q) {
 };
 
 ////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Balanced Binary Tree
+ *
+ * Given a binary tree, determine if it is height-balanced.
+ *
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ *
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isBalanced = function(root) {
+  if (root === null) {
+      return true;
+  }
+
+  let leftHeight = getHeight(root.left);
+  let rightHeight = getHeight(root.right);
+
+  if (Math.abs(leftHeight - rightHeight) > 1) {
+      return false;
+  }
+
+  return isBalanced(root.left) && isBalanced(root.right);
+};
+
+/**
+ * Gets maximum height of a branch from a given node
+ *
+ * @param {TreeNode} node
+ * @return {number}
+ */
+function getHeight(node) {
+  if (node === null) {
+      return 0;
+  }
+
+  let leftHeight = getHeight(node.left);
+  let rightHeight = getHeight(node.right);
+
+  return Math.max(leftHeight, rightHeight) + 1;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Linked List Cycle
+ *
+ * Given head, the head of a linked list, determine if the linked list has a
+ * cycle in it.
+ *
+ * There is a cycle in a linked list if there is some node in the list that can
+ * be reached again by continuously following the next pointer. Internally, pos
+ * is used to denote the index of the node that tail's next pointer is connected
+ * to. Note that pos is not passed as a parameter.
+ *
+ * Return true if there is a cycle in the linked list. Otherwise, return false.
+ *
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ *
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var hasCycle = function(head) {
+  let fast = head;
+
+  while (fast && fast.next) {
+      head = head.next;
+      fast = fast.next.next;
+      if (head === fast) {
+          return true;
+      }
+  }
+
+  return false;
+};
