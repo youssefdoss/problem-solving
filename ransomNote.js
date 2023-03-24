@@ -11,7 +11,7 @@
  * @return {boolean}
  */
 var canConstruct = function(ransomNote, magazine) {
-  if (magazine.length < ransomNote) return false;
+  if (magazine.length < ransomNote.length) return false;
 
   ransomChars = {};
   magazineChars = {};
