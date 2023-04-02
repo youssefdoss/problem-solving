@@ -12,7 +12,7 @@
  * @return {string[]}
  */
 var letterCombinations = function(digits) {
-  if (digits.length === 0) return []; // edge case
+  if (digits.length === 0) return [];
 
 const digitToLetters = {
   '2': ['a', 'b', 'c'],
